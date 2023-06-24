@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverse-proxy-full-stack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reverse-proxy-full-stack
+  template:
+    metadata:
+      labels:
+        app: reverse-proxy-full-stack
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.21
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-conf
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-full-stack
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reverse-proxy-full-stack
+spec:
+  selector:
+    app: reverse-proxy-full-stack
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+  type: NodePort

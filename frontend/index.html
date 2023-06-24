@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple API Client</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>API Data</h1>
+  <button id="loadData">Load Data</button>
+  update
+  <ul id="dataList"></ul>
+  <script>
+    document.getElementById('loadData').addEventListener('click', async () => {
+        try{
+
+            // const response = await fetch('http://full-stack-backend.default.svc.cluster.local:3001/api/books');      
+            const response = await fetch('/api/books');
+            const data = await response.json();
+            const dataList = document.getElementById('dataList');
+            dataList.innerHTML = '';
+            
+            data.forEach(user => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${user.id}: ${user.name}`;
+                dataList.appendChild(listItem);
+            });
+        }catch(e){
+            console.log("error, meesage =>>", e)
+        }
+        });
+  </script>
+</body>
+</html>
