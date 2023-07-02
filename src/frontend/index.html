@@ -20,8 +20,6 @@
   <script>
     document.getElementById('loadData').addEventListener('click', async () => {
         try{
-
-            // const response = await fetch('http://full-stack-backend.default.svc.cluster.local:3001/api/books');      
             const response = await fetch('/api/books');
             const data = await response.json();
             const dataList = document.getElementById('dataList');
