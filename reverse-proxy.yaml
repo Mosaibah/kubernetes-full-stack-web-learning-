@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: my-app
   name: reverse-proxy-full-stack
 spec:
   replicas: 1
