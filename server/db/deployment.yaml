@@ -32,6 +32,11 @@ spec:
             secretKeyRef:
               name: db-secret
               key: POSTGRES_DB
+        - name: DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: database.host
         ports:
         - containerPort: 5432
   
