@@ -1,7 +1,9 @@
+#!/bin/bash
+
 docker build -t backend:v1 ./src/backend
 docker build -t frontend:v1 ./src/frontend
 
-kubectl apply -f namespace.yaml
+kubectl apply -f server/namespace.yaml
 
 # server/db
 kubectl apply -f server/db/secrets.yaml
