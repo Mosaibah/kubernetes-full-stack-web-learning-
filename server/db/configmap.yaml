@@ -6,3 +6,5 @@ metadata:
 data:
   environment: production
   database.host: localhsot
+  database.port: "5432"
+  backend.port: "3001"

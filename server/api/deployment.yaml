@@ -19,3 +19,10 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 3001
+          name: backend-port
+        env:
+        - name: BACKEND_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: backend.port
